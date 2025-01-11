@@ -18,7 +18,7 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   navigateToCreatePost(): void {
-    this.router.navigate(['/create-post']); // Cambia la ruta según tu configuración
+    this.router.navigate(['post']); // Cambia la ruta según tu configuración
   }
 
   async ngOnInit() {

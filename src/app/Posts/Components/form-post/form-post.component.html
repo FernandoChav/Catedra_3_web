@@ -10,8 +10,11 @@
       type="text"
       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
       placeholder="Ingrese el título del post"
-      required
     />
+    <div *ngIf="titleValidate" class="text-red-500 text-sm mt-1">
+      <span *ngIf="postForm.get('title')?.errors?.['required']">El título es obligatorio.</span>
+      <span *ngIf="postForm.get('title')?.errors?.['maxLength']">Máximo 5 caracteres.</span>
+    </div>
   </div>
 
   <!-- Imagen -->
@@ -22,21 +25,10 @@
       type="file"
       (change)="onFileSelected($event)"
       class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      required
     />
-  </div>
-
-  <!-- Correo del usuario -->
-  <div class="mb-4">
-    <label for="email" class="block text-gray-700">Correo del Usuario</label>
-    <input
-      id="email"
-      formControlName="email"
-      type="email"
-      class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      [value]="userEmail"
-      readonly
-    />
+    <div *ngIf="imageUrlValidate" class="text-red-500 text-sm mt-1">
+      <span>Es necesario subir una imagen.</span>
+    </div>
   </div>
 
   <!-- Botón de enviar -->
@@ -48,5 +40,17 @@
     >
       Crear Post
     </button>
+  </div>
+
+  <!-- Mensajes de error generales -->
+  <div *ngIf="error" class="text-red-500 text-sm mt-2">
+    <ul>
+      <li *ngFor="let message of errorMesage">{{ message }}</li>
+    </ul>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <div *ngIf="loginAlert" class="text-green-500 text-sm mt-2">
+    Post creado exitosamente.
   </div>
 </form>
