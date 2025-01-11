@@ -1,0 +1,19 @@
+/* Animaciones y estilo adicional */
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .card img {
+    transition: opacity 0.3s ease;
+  }
+  
+  .card img:hover {
+    opacity: 0.9;
+  }
+  
+  .card-title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }

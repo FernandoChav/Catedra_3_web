@@ -1,1 +1,58 @@
-<p>form-register works!</p>
+<form [formGroup]="form" (ngSubmit)="register()" class="bg-white bg-opacity-10 p-8 rounded-xl shadow-xl max-w-md mx-auto space-y-6 ">
+    <!-- Success and Error Alerts -->
+    <div *ngIf="RegisterAlert" class="text-green-500 font-medium text-center mb-4">
+      Registro  exitoso! Redirigiendo...
+    </div>
+    <div *ngIf="error" class="text-red-500 font-medium text-center mb-4">
+      <ul>
+        <li *ngFor="let msg of errorMesage">{{ msg }}</li>
+      </ul>
+    </div>
+  
+    <!-- Email Input -->
+    <div class="mb-5">
+      <label for="email" class="block text-sm font-medium text-black-200 mb-2">Correo electrónico</label>
+      <input
+        formControlName="email"
+        [class.is-invalid]="emailValidate"
+        type="email"
+        id="email"
+        class="w-full p-4 rounded-lg border-2 border-gray-300 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-pink-300 focus:outline-none transition duration-200"
+        placeholder="name@domain.com"
+        required
+      />
+      <small *ngIf="emailValidate" class="text-red 500 text-sm">
+        ingrese un correo electrónico válido
+      </small>
+    </div>
+  
+    <!-- Password Input -->
+    <div class="mb-5">
+      <label for="password" class="block text-sm font-medium text-gray-800 mb-2">Contraseña</label>
+      <input
+        type="password"
+        formControlName="password"
+        [class.is-invalid]="passwordValidate"
+        id="password"
+        class="w-full p-4 rounded-lg border-2 border-gray-300 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-pink-300 focus:outline-none transition duration-200"
+        placeholder="********"
+        required
+      />
+      <small *ngIf="passwordValidate" class="text-red-500 text-sm">
+        La contraseña debe tener al menos 6 caracteres
+      </small>
+    </div>
+  
+    <!-- Login Button -->
+    <div class="flex justify-center">
+      <button
+        type="submit"
+        class="w-full bg-pink-500 text-white font-medium py-3 px-5 rounded-lg text-sm hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-1 transition duration-200"
+      >
+        Registrarse
+      </button>
+    </div>
+  
+    
+  </form>
+  

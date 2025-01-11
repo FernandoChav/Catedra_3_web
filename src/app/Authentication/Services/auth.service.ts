@@ -48,7 +48,7 @@ export class AuthService {
 
   async register(form: any): Promise<RegisterResponse> {
     try {
-        const response = await firstValueFrom(this.http.post<RegisterResponse>(`${this.baseUrl}/api/register`, form));
+        const response = await firstValueFrom(this.http.post<RegisterResponse>(`${this.baseUrl}api/auth/register`, form));
         return Promise.resolve(response) 
       // Devuelve true si la respuesta es "OK".
     } catch (error) {

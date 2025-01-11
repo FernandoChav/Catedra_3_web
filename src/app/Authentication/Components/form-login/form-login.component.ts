@@ -28,7 +28,7 @@ export class FormLoginComponent {
   formulario(){
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]] 
+      password: ['', [Validators.required, Validators.minLength(6)]] 
     });
   }
   get emailValidate() { return this.form.get('email')?.invalid && this.form.get('email')?.touched; }
@@ -53,7 +53,7 @@ export class FormLoginComponent {
 
       if (response.token != "") {
         this.storageService.setVar('token', response.token);
-        
+        this.storageService.setVar('email', response.email);
         this.loginAlert = true;
         this.error = false;
         this.errorMesage = [];
@@ -71,7 +71,7 @@ export class FormLoginComponent {
       } 
     } catch (error: any) {
       console.log(error);
-      if (error.status === 400) {
+      if (error.status === 401) {
         this.error = true;
         this.loginAlert = false;
         this.errorMesage = [error.error.message]; // Mensaje específico del backend
